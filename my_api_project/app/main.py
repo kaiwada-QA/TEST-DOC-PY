@@ -2,9 +2,6 @@ from fastapi import FastAPI
 import mysql.connector
 from mysql.connector import Error
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
 
 app = FastAPI()
 
@@ -22,9 +19,9 @@ def check_db():
             password=os.getenv("MYSQL_PASSWORD")
         )
         if connection.is_connected():
-            return {"status": "接続成功"}
+            return {"status": "sucess"}
     except Error as e:
-        return {"status": "接続失敗", "error": str(e)}
+        return {"status": "miss", "error": str(e)}
     finally:
         if connection.is_connected():
             connection.close()
